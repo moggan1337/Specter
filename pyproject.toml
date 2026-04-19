@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "specter-cc"
+version = "1.0.0"
+description = "Confidential Computing AI Framework"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Specter Team", email = "specter@example.com"}
+]
+keywords = [
+    "confidential-computing",
+    "tee",
+    "sgx",
+    "sev",
+    "secure-ml",
+    "federated-learning",
+    "privacy-preserving",
+    "attestation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "cryptography>=41.0.0",
+    "pyaes>=1.6.1",
+    "numpy>=1.23.0",
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+    "requests>=2.28.0",
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=3.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=22.0.0",
+    "flake8>=4.0.0",
+    "mypy>=0.950",
+    "isort>=5.12.0",
+]
+ml = [
+    "torch>=2.0.0",
+    "tensorflow>=2.10.0",
+]
+api = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/moggan1337/Specter"
+Documentation = "https://specter.readthedocs.io"
+Repository = "https://github.com/moggan1337/Specter"
+Issues = "https://github.com/moggan1337/Specter/issues"
+
+[project.scripts]
+specter = "specter:main"
+specter-cli = "specter.api.cli:main"
+specter-server = "specter.api.server:run_server"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests", "tests.*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+addopts = "-v --cov=specter --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["specter"]
+omit = ["tests/*", "**/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+]
