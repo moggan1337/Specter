@@ -17,6 +17,24 @@
 
 ---
 
+## 🎬 Demo
+![Specter Demo](demo.gif)
+
+*Confidential AI in trusted execution environments*
+
+## Screenshots
+| Component | Preview |
+|-----------|---------|
+| TEE Status | ![tee](screenshots/tee-status.png) |
+| Secure Enclave | ![enclave](screenshots/secure-enclave.png) |
+| Attestation | ![attest](screenshots/attestation.png) |
+
+## Visual Description
+TEE status shows SGX/SEV enclave states with measurement. Secure enclave displays protected model execution. Attestation shows remote verification with quotes.
+
+---
+
+
 ## Table of Contents
 
 1. [Overview](#overview)
